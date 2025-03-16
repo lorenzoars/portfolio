@@ -1,53 +1,41 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcomeFallback from '$lib/images/svelte-welcome.png';
 	import Post from './Post.svelte';
-	let {data} = $props();
+	let { data } = $props();
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Ars portfolio" />
 </svelte:head>
 
-<section>
-	<h1>Ciao
-	</h1>
-	
+<!-- Avvolgiamo i post in un container griglia -->
+<section class="page-section">
 	<div class="container">
 		{#each data.works as post}
-		<Post title={post.title} description={post.description} image={post.image}/>
-	{/each}
+			<Post
+				title={post.title}
+				description={post.description}
+				image={post.image}
+			/>
+		{/each}
 	</div>
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+	/* Aggiunge spazio sotto l’header */
+	.page-section {
+		margin-top: 4rem; /* oppure padding-top: 4rem, se preferisci */
 	}
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+	/* Definisce una griglia a 2 colonne per i post */
+	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		justify-items: center;
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 1rem;
+		box-sizing: border-box;
 	}
 </style>
