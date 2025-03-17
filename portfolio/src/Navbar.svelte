@@ -7,7 +7,7 @@
   }
 </script>
 
-<!-- Navbar fissa -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <!-- Sezione sinistra: link -->
   <div class="nav-left">
@@ -16,12 +16,7 @@
     <a href="/">Contact</a>
   </div>
 
-  <!-- Sezione centrale: brand -->
-  <div class="nav-center">
-    <a href="/" class="brand">Lorenzo Arsenti</a>
-  </div>
-
-  <!-- Sezione destra: icone aggiuntive -->
+  <!-- Sezione destra: icone -->
   <div class="nav-right">
     <a href="https://github.com/lorenzo-arsenti" target="_blank" rel="noopener">
       <Github class="icon" />
@@ -37,13 +32,18 @@
     </a>
   </div>
 
-  <!-- Bottone hamburger per mobile -->
+  <!-- Brand centrato -->
+  <div class="nav-center">
+    <a href="/" class="brand">Lorenzo Arsenti</a>
+  </div>
+
+  <!-- Bottone hamburger (mobile) -->
   <button class="hamburger" on:click={toggleMenu}>
     <Menu class="icon" />
   </button>
 </nav>
 
-<!-- Menu a tendina (visibile in mobile) -->
+<!-- MENU A TENDINA MOBILE -->
 {#if isOpen}
   <div class="dropdown-menu">
     <a href="/" on:click={toggleMenu}>Works</a>
@@ -65,33 +65,16 @@
 {/if}
 
 <style>
-  /********************************************
-   * Stili di base
-   ********************************************/
-  :global(body) {
-    margin: 0;
-    font-family: sans-serif;
-    background: #fff; /* facoltativo, se vuoi sfondo bianco per la pagina */
-  }
-
-  /********************************************
-   * Navbar
-   ********************************************/
   .navbar {
-    position: fixed;
-    top: 0;
+    position: relative;
     width: 100%;
     padding: 0.75rem 2rem;
-    background-color: #000;
-    color: #fff;
-    z-index: 999;
-
-    /* Layout flex: spaziatura e allineamento */
+    background-color: #000; /* Navbar nera */
     display: flex;
     align-items: center;
-    /* Non usiamo justify-content: space-between
-       perché vogliamo gestire manualmente la distribuzione
-       con .nav-left, .nav-center, .nav-right */
+    justify-content: space-between;
+    z-index: 999;
+    border-bottom: 1px solid #444;
   }
 
   .nav-left,
@@ -101,25 +84,21 @@
     align-items: center;
   }
 
-  /* Sezione centrale: brand davvero al centro */
   .nav-center {
-    /* Occupa tutto lo spazio rimanente */
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  /* Stile del brand: ridotto, uppercase e un po' di letter-spacing */
   .brand {
     font-size: 1rem;
-    font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #fff;
     text-decoration: none;
   }
 
-  /* Stile dei link della navbar */
+  /* Link di sinistra e di destra */
   .nav-left a,
   .nav-right a {
     font-size: 0.9rem;
@@ -131,21 +110,18 @@
   }
   .nav-left a:hover,
   .nav-right a:hover {
-    color: #888;
+    color: #aaa;
   }
 
-  /* Icone Lucide: dimensioni leggermente più piccole e stroke ridotto */
   .icon {
     width: 20px;
     height: 20px;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.3;
+    color: #fff;
   }
 
-  /********************************************
-   * Bottone hamburger (mobile)
-   ********************************************/
   .hamburger {
     display: none;
     border: none;
@@ -154,22 +130,21 @@
     cursor: pointer;
   }
 
-  /********************************************
-   * Menu a tendina (mobile)
-   ********************************************/
+  /* Dropdown menu (mobile) */
   .dropdown-menu {
     position: fixed;
-    top: 50px; /* leggermente meno spazio sotto la navbar */
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 180px; /* un po' più stretto per un look più compatto */
-    background-color: #000;
+    width: 180px;
+    background-color: #000; /* sfondo nero */
+    color: #fff;           /* testo bianco */
     border: 1px solid #444;
     border-radius: 6px;
     padding: 0.5rem 0;
     display: flex;
     flex-direction: column;
-    z-index: 998;
+    z-index: 1000;
   }
   .dropdown-menu a {
     padding: 0.5rem 1rem;
@@ -187,16 +162,11 @@
     background-color: #222;
   }
 
-  /********************************************
-   * Responsive
-   ********************************************/
   @media (max-width: 900px) {
-    /* Nascondiamo nav-left e nav-right, mostriamo l’hamburger */
     .nav-left,
     .nav-right {
       display: none;
     }
-
     .hamburger {
       display: block;
     }

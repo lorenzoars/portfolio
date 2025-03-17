@@ -4,9 +4,10 @@
   export let image;
 </script>
 
-<div class="card">
-  <img src={image} alt="image" />
+<div class="post">
+  <img src={image} alt={title} />
 
+  <!-- Overlay che appare in hover -->
   <div class="overlay">
     <h2>{title}</h2>
     <p>{description}</p>
@@ -14,55 +15,70 @@
 </div>
 
 <style>
-  .card {
+  .post {
     position: relative;
     width: 100%;
-    height: 400px;
     overflow: hidden;
-    cursor: pointer;
   }
 
-  .card img {
+  .post img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
-    transition: transform 0.3s ease;
     display: block;
+    transition: transform 0.3s ease;
   }
 
-  .card:hover img {
-    transform: scale(1.1);
+  /* Effetto zoom leggero dell'immagine */
+  .post:hover img {
+    transform: scale(1.02);
   }
 
+  /* L’overlay è nascosto di default (opacity: 0). */
   .overlay {
     position: absolute;
     top: 0;
     left: 0;
+    /* Copre l'intera area della foto */
     width: 100%;
     height: 100%;
+
+    /* Sfondo semi-trasparente */
     background-color: rgba(0, 0, 0, 0.5);
+
+    /* Transizione per apparire gradualmente */
     opacity: 0;
     transition: opacity 0.3s ease;
+
+    /* Per centrare testo verticalmente e orizzontalmente */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
     text-align: center;
+
+    /* Colore del testo bianco per contrasto */
+    color: #fff;
+
+    /* Spazio interno e distanza tra titolo e descrizione */
     padding: 1rem;
+    gap: 0.5rem;
   }
 
-  .card:hover .overlay {
+  /* Al passaggio del mouse sul container .post, l’overlay diventa visibile */
+  .post:hover .overlay {
     opacity: 1;
   }
 
+  /* Stili del testo */
   .overlay h2 {
-    font-size: 2rem;
-    margin: 0 0 0.5rem;
-  }
-
-  .overlay p {
-    font-size: 1.2rem;
     margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+  .overlay p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.2;
   }
 </style>

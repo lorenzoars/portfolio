@@ -4,11 +4,10 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Portfolio</title>
 	<meta name="description" content="Ars portfolio" />
 </svelte:head>
 
-<!-- Avvolgiamo i post in un container griglia -->
 <section class="page-section">
 	<div class="container">
 		{#each data.works as post}
@@ -22,20 +21,32 @@
 </section>
 
 <style>
-	/* Aggiunge spazio sotto l’header */
 	.page-section {
-		margin-top: 4rem; /* oppure padding-top: 4rem, se preferisci */
+		margin: 0;
+		padding: 0;
 	}
 
-	/* Definisce una griglia a 2 colonne per i post */
 	.container {
+		/* Disposizione a 2 colonne */
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-		justify-items: center;
-		max-width: 64rem;
-		margin: 0 auto;
-		padding: 1rem;
+
+		/* Spazio minimo tra le foto */
+		gap: 2px;
+
+		/* Limite di larghezza e margini laterali */
+		max-width: 1600px;
+		margin: 2rem auto;  /* margine verticale e centratura orizzontale */
+		padding: 0 1rem;    /* padding orizzontale per non aderire ai bordi */
+
+		width: 100%;
 		box-sizing: border-box;
+	}
+
+	/* Esempio di responsive: sotto i 720px, una colonna */
+	@media (max-width: 720px) {
+		.container {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
