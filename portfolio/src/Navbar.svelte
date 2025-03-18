@@ -74,7 +74,7 @@
     align-items: center;
     justify-content: space-between;
     z-index: 999;
-    border-bottom: 1px solid #444;
+   
   }
 
   .nav-left,
@@ -151,7 +151,7 @@
     font-size: 0.9rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-    border-bottom: 1px solid #333;
+ 
     color: #fff;
     text-decoration: none;
   }
